@@ -25,9 +25,6 @@ WORKDIR /var/www/html
 # Copy Laravel project files
 COPY . .
 
-# Install Laravel dependencies
-RUN composer install --no-dev --optimize-autoloader
-
 # Set correct permissions
 RUN chmod -R 775 storage bootstrap/cache
 
@@ -36,3 +33,9 @@ EXPOSE 80
 
 # Start Apache
 CMD ["apache2-foreground"]
+
+# Set environment variable to allow Composer to run as root
+ENV COMPOSER_ALLOW_SUPERUSER=1
+
+# Install Laravel dependencies
+RUN composer install --no-dev --optimize-autoloader
