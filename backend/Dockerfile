@@ -25,6 +25,9 @@ WORKDIR /var/www/html
 # Copy Laravel project files
 COPY . .
 
+# Ensure necessary directories exist
+RUN mkdir -p storage bootstrap/cache
+
 # Set correct permissions
 RUN chmod -R 775 storage bootstrap/cache
 
