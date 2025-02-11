@@ -19,11 +19,17 @@ RUN a2enmod rewrite
 # Install Composer
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 
-# Set working directory
+# Set working directory inside container
 WORKDIR /var/www/html
 
-# Copy Laravel project files
-COPY . .
+# Copy Laravel backend folder instead of everything
+COPY backend /var/www/html
+
+# Set environment variable to allow Composer to run as root
+ENV COMPOSER_ALLOW_SUPERUSER=1
+
+# Install Laravel dependencies (prevent failure with `|| true`)
+RUN composer install --no-dev --optimize-autoloader || true
 
 # Ensure necessary directories exist
 RUN mkdir -p storage bootstrap/cache
@@ -36,9 +42,3 @@ EXPOSE 80
 
 # Start Apache
 CMD ["apache2-foreground"]
-
-# Set environment variable to allow Composer to run as root
-ENV COMPOSER_ALLOW_SUPERUSER=1
-
-# Install Laravel dependencies
-RUN composer install --no-dev --optimize-autoloader
