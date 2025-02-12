@@ -1,14 +1,11 @@
-<<<<<<< HEAD
-node_modules
-vendor
-storage
+/node_modules
+/public/hot
+/public/storage
+/storage/*.key
+/vendor
 .env
-*.log
-*.sqlite
-.git
-.gitignore
-public/storage
-composer.lock
-package-lock.json
-docker-compose.yml
->>>>>>> d8e28cf (change .dockerignore)
+.phpunit.result.cache
+Homestead.json
+Homestead.yaml
+npm-debug.log
+yarn-error.log
