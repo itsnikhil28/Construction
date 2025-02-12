@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 /node_modules
 /public/hot
 /public/storage
@@ -9,3 +10,17 @@ Homestead.json
 Homestead.yaml
 npm-debug.log
 yarn-error.log
+=======
+node_modules
+vendor
+storage
+.env
+*.log
+*.sqlite
+.git
+.gitignore
+public/storage
+composer.lock
+package-lock.json
+docker-compose.yml
+>>>>>>> d8e28cf (change .dockerignore)
