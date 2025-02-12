@@ -4,6 +4,7 @@ namespace App\Providers;
 
 use Illuminate\Foundation\AliasLoader;
 use Illuminate\Support\ServiceProvider;
+use Illuminate\Routing\UrlGenerator;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -18,10 +19,10 @@ class AppServiceProvider extends ServiceProvider
     /**
      * Bootstrap any application services.
      */
-    public function boot(): void
+  public function boot(UrlGenerator $url): void
     {
-        // $loader = AliasLoader::getInstance();
-        // // using custom PersonalAccessToken model instead of Sanctum's
-        // $loader->alias(\Laravel\Sanctum\PersonalAccessToken::class, \app\Models\PersonalAccessToken::class);
+        if (env('APP_ENV') == 'production') {
+            $url->forceScheme('https');
+        }
     }
 }
